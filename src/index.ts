@@ -1,1 +1,1 @@
-export default 'hello, pure typescript package';
+export default 'hello, codegem';

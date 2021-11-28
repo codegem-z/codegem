@@ -1,10 +1,10 @@
 {
-  "name": "package-name",
+  "name": "codegem",
   "version": "0.0.0",
   "main": "dist/index.js",
   "license": "MIT",
-  "registry": "",
-  "homepage": "",
+  "registry": "https://github.com/xiamu14/codegem.git",
+  "homepage": "https://github.com/xiamu14/codegem",
   "files": [
     "dist/*"
   ],
