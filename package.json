@@ -2,6 +2,9 @@
   "name": "codegem",
   "version": "0.0.1-0",
   "main": "build/mod.js",
+  "bin": {
+		"codegem": "build/run.js"
+	},
   "license": "MIT",
   "registry": "https://github.com/xiamu14/codegem.git",
   "homepage": "https://github.com/xiamu14/codegem",
