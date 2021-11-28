@@ -3,8 +3,8 @@
   "version": "0.0.1-0",
   "main": "build/mod.js",
   "bin": {
-		"codegem": "build/run.js"
-	},
+    "codegem": "build/run.js"
+  },
   "license": "MIT",
   "registry": "https://github.com/xiamu14/codegem.git",
   "homepage": "https://github.com/xiamu14/codegem",
@@ -28,6 +28,7 @@
     "babel-jest": "^27.2.3",
     "eslint": "^7.32.0",
     "jest": "^27.2.3",
+    "release-it": "^14.11.8",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.5",
     "tsm": "^2.1.4",
