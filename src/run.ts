@@ -26,15 +26,21 @@ async function readConfig() {
     },
     "sourceMaps": false
   })
-  const configJsPath = path.resolve(workPath, "./build/codegemrc.js")
-  fs.writeFileSync(configJsPath, output.code)
-  const { default: config } = await import(configJsPath);
-  return config;
+  try {
+    const configJsPath = path.resolve(workPath, "./node_modules/codegem_cache/codegemrc.mjs");
+    fs.outputFileSync(configJsPath, output.code);
+    const { default: config } = await import(configJsPath);
+    fs.remove(path.dirname(configJsPath))
+    return config;
+  } catch (error) {
+    console.error(error)
+    process.exit()
+  }
 }
 
 async function run() {
   const options = await readConfig();
-  console.log("debug", options);
+  // console.log("debug", options);
 
   const codeGenerator = new CodeGenerator(options);
 
