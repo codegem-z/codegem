@@ -14,7 +14,8 @@
   "type": "module",
   "scripts": {
     "build": "rimraf build && tsc",
-    "jest": "yarn build && jest --coverage"
+    "jest": "yarn build && jest --coverage",
+    "release": "release-it --no-npm"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
