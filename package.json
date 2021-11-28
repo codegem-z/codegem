@@ -1,6 +1,6 @@
 {
   "name": "codegem",
-  "version": "0.0.1-1",
+  "version": "0.0.2-beta.0",
   "main": "build/mod.js",
   "bin": {
     "codegem": "build/run.js"
@@ -15,7 +15,7 @@
   "scripts": {
     "build": "rimraf build && tsc",
     "jest": "yarn build && jest --coverage",
-    "release": "release-it --no-npm"
+    "release": "renew-it"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
@@ -29,7 +29,7 @@
     "babel-jest": "^27.2.3",
     "eslint": "^7.32.0",
     "jest": "^27.2.3",
-    "release-it": "^14.11.8",
+    "renew-it": "^1.4.4",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.5",
     "tsm": "^2.1.4",
