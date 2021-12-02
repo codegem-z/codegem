@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@swc/core": "^1.2.113",
-    "codegem-tools": "^0.1.0-alpha.0",
+    "codegem-tools": "0.1.1-alpha.0",
     "fs-extra": "^10.0.0",
     "yargs-parser": "^21.0.0"
   }

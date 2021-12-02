@@ -19,7 +19,7 @@ export default class CodeGenerator {
   }
 
   init() {
-    this.log.info('[info]: init');
+    this.log.info('init');
     this.option.factory.forEach((factory: any, index) => {
       const factoryId = Symbol(index);
       this.factory.push({ ...factory, ...{ id: factoryId } });
@@ -72,7 +72,7 @@ export default class CodeGenerator {
         } else {
           if (rootPath) {
             const filePath = path.resolve(rootPath, file.pathname);
-            this.log.debug('debug', filePath, file.code);
+            this.log.debug(filePath, file.code);
             // TODO: 判断路径有效
             fs.outputFileSync(filePath, file.code);
           } else {

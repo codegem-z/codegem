@@ -12,7 +12,7 @@ specifiers:
   '@typescript-eslint/parser': ^4.32.0
   all-contributors-cli: ^6.20.0
   babel-jest: ^27.2.3
-  codegem-tools: ^0.1.0-alpha.0
+  codegem-tools: 0.1.1-alpha.0
   eslint: ^7.32.0
   fs-extra: ^10.0.0
   jest: ^27.2.3
@@ -25,7 +25,7 @@ specifiers:
 
 dependencies:
   '@swc/core': registry.npmmirror.com/@swc/core/1.2.113
-  codegem-tools: registry.npmjs.org/codegem-tools/0.1.0-alpha.0
+  codegem-tools: registry.npmjs.org/codegem-tools/0.1.1-alpha.0
   fs-extra: registry.nlark.com/fs-extra/10.0.0
   yargs-parser: registry.npmjs.org/yargs-parser/21.0.0
 
@@ -741,10 +741,10 @@ packages:
     version: 20.2.1
     dev: true
 
-  registry.npmjs.org/codegem-tools/0.1.0-alpha.0:
-    resolution: {integrity: sha512-xNaBuR6+hiZ3KnvZCdjPH4dyXW8QWjE7BDWslyU/HZVMuPAfspKFler+37/uGjf6kAjTIm8ByL1OkkWuOd9UIg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/codegem-tools/-/codegem-tools-0.1.0-alpha.0.tgz}
+  registry.npmjs.org/codegem-tools/0.1.1-alpha.0:
+    resolution: {integrity: sha512-PR3OefsJeAniFlPILTmi3lj72hwWWLBcNxQGUntwLJVlWlvPcBf5WADERxfp2U+OuQDEn+QpMlo9QuVPmAr6lg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/codegem-tools/-/codegem-tools-0.1.1-alpha.0.tgz}
     name: codegem-tools
-    version: 0.1.0-alpha.0
+    version: 0.1.1-alpha.0
     dev: false
 
   registry.npmjs.org/esbuild-android-arm64/0.13.15:
