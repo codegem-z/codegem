@@ -1,8 +1,7 @@
 import fs from 'fs-extra';
 import * as path from 'path';
-import { Log } from './tools.js';
 import { Factory, Option, FileType, Use, Ctx } from './type.js';
-
+import { Log } from 'codegem-tools';
 interface EnhanceFactory extends Factory {
   id: symbol;
 }
@@ -59,7 +58,7 @@ export default class CodeGenerator {
     const factory = this.getFactory(factoryId);
     const { machine } = factory;
     const source = this.storage[factoryId];
-    console.debug('原始数据', source);
+    this.log.debug('原始数据', source);
     const files = machine(source, this.ctx);
     this.writeFile(files, factory.output || this.option.output);
   }
@@ -73,7 +72,7 @@ export default class CodeGenerator {
         } else {
           if (rootPath) {
             const filePath = path.resolve(rootPath, file.pathname);
-            console.log('debug', filePath, file.code);
+            this.log.debug('debug', filePath, file.code);
             // TODO: 判断路径有效
             fs.outputFileSync(filePath, file.code);
           } else {
