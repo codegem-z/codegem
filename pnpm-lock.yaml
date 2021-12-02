@@ -7,6 +7,7 @@ specifiers:
   '@swc/core': ^1.2.113
   '@types/fs-extra': ^9.0.13
   '@types/jest': ^27.0.2
+  '@types/yargs-parser': ^20.2.1
   '@typescript-eslint/eslint-plugin': ^4.32.0
   '@typescript-eslint/parser': ^4.32.0
   all-contributors-cli: ^6.20.0
@@ -19,10 +20,12 @@ specifiers:
   ts-jest: ^27.0.5
   tsm: ^2.1.4
   typescript: ^4.4.3
+  yargs-parser: ^21.0.0
 
 dependencies:
   '@swc/core': registry.npmmirror.com/@swc/core/1.2.113
   fs-extra: registry.nlark.com/fs-extra/10.0.0
+  yargs-parser: registry.npmjs.org/yargs-parser/21.0.0
 
 devDependencies:
   '@babel/core': registry.npmmirror.com/@babel/core/7.16.0
@@ -30,6 +33,7 @@ devDependencies:
   '@babel/preset-typescript': registry.npmmirror.com/@babel/preset-typescript/7.16.0_@babel+core@7.16.0
   '@types/fs-extra': registry.npmmirror.com/@types/fs-extra/9.0.13
   '@types/jest': registry.npmmirror.com/@types/jest/27.0.3
+  '@types/yargs-parser': registry.npmjs.org/@types/yargs-parser/20.2.1
   '@typescript-eslint/eslint-plugin': registry.npmmirror.com/@typescript-eslint/eslint-plugin/4.33.0_d00b196ac5df1286ea7e45797bebddbc
   '@typescript-eslint/parser': registry.npmmirror.com/@typescript-eslint/parser/4.33.0_eslint@7.32.0+typescript@4.5.2
   all-contributors-cli: registry.npmmirror.com/all-contributors-cli/6.20.0
@@ -729,6 +733,12 @@ packages:
     dev: false
     optional: true
 
+  registry.npmjs.org/@types/yargs-parser/20.2.1:
+    resolution: {integrity: sha512-7tFImggNeNBVMsn0vLrpn1H1uPrUBdnARPTpZoitY37ZrdJREzf7I16tMrlK3hen349gr1NYh8CmZQa7CTG6Aw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@types/yargs-parser/-/yargs-parser-20.2.1.tgz}
+    name: '@types/yargs-parser'
+    version: 20.2.1
+    dev: true
+
   registry.npmjs.org/esbuild-android-arm64/0.13.15:
     resolution: {integrity: sha512-m602nft/XXeO8YQPUDVoHfjyRVPdPgjyyXOxZ44MK/agewFFkPa8tUo6lAzSWh5Ui5PB4KR9UIFTSBKh/RrCmg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/esbuild-android-arm64/-/esbuild-android-arm64-0.13.15.tgz}
     name: esbuild-android-arm64
@@ -932,6 +942,30 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
     optional: true
+
+  registry.npmjs.org/yargs-parser/18.1.3:
+    resolution: {integrity: sha512-o50j0JeToy/4K6OZcaQmW6lyXXKhq7csREXcDwk2omFPJEwUNOVtJKvmDr9EI1fAJZUyZcRF7kxGBWmRXudrCQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/yargs-parser/-/yargs-parser-18.1.3.tgz}
+    name: yargs-parser
+    version: 18.1.3
+    engines: {node: '>=6'}
+    dependencies:
+      camelcase: registry.npmmirror.com/camelcase/5.3.1
+      decamelize: registry.npmmirror.com/decamelize/1.2.0
+    dev: true
+
+  registry.npmjs.org/yargs-parser/20.2.9:
+    resolution: {integrity: sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/yargs-parser/-/yargs-parser-20.2.9.tgz}
+    name: yargs-parser
+    version: 20.2.9
+    engines: {node: '>=10'}
+    dev: true
+
+  registry.npmjs.org/yargs-parser/21.0.0:
+    resolution: {integrity: sha512-z9kApYUOCwoeZ78rfRYYWdiU/iNL6mwwYlkkZfJoyMR1xps+NEBX5X7XmRpxkZHhXJ6+Ey00IwKxBBSW9FIjyA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/yargs-parser/-/yargs-parser-21.0.0.tgz}
+    name: yargs-parser
+    version: 21.0.0
+    engines: {node: '>=12'}
+    dev: false
 
   registry.npmmirror.com/@babel/code-frame/7.12.11:
     resolution: {integrity: sha1-9K1DWqJj25NbjxDyxVLSP7cWpj8=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@babel/code-frame/download/@babel/code-frame-7.12.11.tgz}
@@ -2846,18 +2880,12 @@ packages:
     version: 2.0.1
     dev: true
 
-  registry.npmmirror.com/@types/yargs-parser/20.2.1:
-    resolution: {integrity: sha1-O5ziSJkZ2eT+pDm3aRarw0st8Sk=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/yargs-parser/download/@types/yargs-parser-20.2.1.tgz}
-    name: '@types/yargs-parser'
-    version: 20.2.1
-    dev: true
-
   registry.npmmirror.com/@types/yargs/16.0.4:
     resolution: {integrity: sha1-JqrZjdLCo45CEIbqmtQrnlFkKXc=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/yargs/download/@types/yargs-16.0.4.tgz}
     name: '@types/yargs'
     version: 16.0.4
     dependencies:
-      '@types/yargs-parser': registry.npmmirror.com/@types/yargs-parser/20.2.1
+      '@types/yargs-parser': registry.npmjs.org/@types/yargs-parser/20.2.1
     dev: true
 
   registry.npmmirror.com/@typescript-eslint/eslint-plugin/4.33.0_d00b196ac5df1286ea7e45797bebddbc:
@@ -5882,7 +5910,7 @@ packages:
       make-error: registry.npmmirror.com/make-error/1.3.6
       semver: registry.npmmirror.com/semver/7.3.5
       typescript: registry.npmmirror.com/typescript/4.5.2
-      yargs-parser: registry.npmmirror.com/yargs-parser/20.2.9
+      yargs-parser: registry.npmjs.org/yargs-parser/20.2.9
     dev: true
 
   registry.npmmirror.com/tslib/1.14.1:
@@ -6206,23 +6234,6 @@ packages:
     version: 4.0.0
     dev: true
 
-  registry.npmmirror.com/yargs-parser/18.1.3:
-    resolution: {integrity: sha1-vmjEl1xrKr9GkjawyHA2L6sJp7A=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/yargs-parser/download/yargs-parser-18.1.3.tgz}
-    name: yargs-parser
-    version: 18.1.3
-    engines: {node: '>=6'}
-    dependencies:
-      camelcase: registry.npmmirror.com/camelcase/5.3.1
-      decamelize: registry.npmmirror.com/decamelize/1.2.0
-    dev: true
-
-  registry.npmmirror.com/yargs-parser/20.2.9:
-    resolution: {integrity: sha1-LrfcOwKJcY/ClfNidThFxBoMlO4=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/yargs-parser/download/yargs-parser-20.2.9.tgz}
-    name: yargs-parser
-    version: 20.2.9
-    engines: {node: '>=10'}
-    dev: true
-
   registry.npmmirror.com/yargs/15.4.1:
     resolution: {integrity: sha1-DYehbeAa7p2L7Cv7909nhRcw9Pg=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/yargs/download/yargs-15.4.1.tgz}
     name: yargs
@@ -6239,7 +6250,7 @@ packages:
       string-width: registry.npmmirror.com/string-width/4.2.3
       which-module: registry.npmmirror.com/which-module/2.0.0
       y18n: registry.npmmirror.com/y18n/4.0.3
-      yargs-parser: registry.npmmirror.com/yargs-parser/18.1.3
+      yargs-parser: registry.npmjs.org/yargs-parser/18.1.3
     dev: true
 
   registry.npmmirror.com/yargs/16.2.0:
@@ -6254,5 +6265,5 @@ packages:
       require-directory: registry.npmmirror.com/require-directory/2.1.1
       string-width: registry.npmmirror.com/string-width/4.2.3
       y18n: registry.npmmirror.com/y18n/5.0.8
-      yargs-parser: registry.npmmirror.com/yargs-parser/20.2.9
+      yargs-parser: registry.npmjs.org/yargs-parser/20.2.9
     dev: true

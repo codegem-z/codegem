@@ -1,6 +1,7 @@
-import fs from "fs-extra";
-import * as path from "path";
-import { Factory, Option, FileType, Use } from "./type.js";
+import fs from 'fs-extra';
+import * as path from 'path';
+import { Log } from './tools.js';
+import { Factory, Option, FileType, Use, Ctx } from './type.js';
 
 interface EnhanceFactory extends Factory {
   id: symbol;
@@ -8,13 +9,18 @@ interface EnhanceFactory extends Factory {
 
 export default class CodeGenerator {
   option: Option;
+  ctx: Ctx;
+  log: Log;
   storage: { [k: symbol]: any[] } = {};
   factory: EnhanceFactory[] = [];
-  constructor(option: Option) {
+  constructor(option: Option, ctx: Ctx) {
     this.option = option;
+    this.ctx = ctx;
+    this.log = new Log(ctx);
   }
 
   init() {
+    this.log.info('[info]: init');
     this.option.factory.forEach((factory: any, index) => {
       const factoryId = Symbol(index);
       this.factory.push({ ...factory, ...{ id: factoryId } });
@@ -26,7 +32,7 @@ export default class CodeGenerator {
   }
 
   // 开辟存储区域
-  createStorage(factoryId: symbol, source:any) {
+  createStorage(factoryId: symbol, source: any) {
     this.storage[factoryId] = source;
   }
 
@@ -40,8 +46,8 @@ export default class CodeGenerator {
     try {
       const source = await Promise.all(
         loads.map(async (it) => {
-          return await it();
-        })
+          return await it(this.ctx);
+        }),
       );
       this.createStorage(factoryId, source);
       // TODO: 开始运行
@@ -53,8 +59,8 @@ export default class CodeGenerator {
     const factory = this.getFactory(factoryId);
     const { machine } = factory;
     const source = this.storage[factoryId];
-    console.log("--原始数据", source);
-    const files = machine(source);
+    console.debug('原始数据', source);
+    const files = machine(source, this.ctx);
     this.writeFile(files, factory.output || this.option.output);
   }
 
@@ -67,11 +73,11 @@ export default class CodeGenerator {
         } else {
           if (rootPath) {
             const filePath = path.resolve(rootPath, file.pathname);
-            console.log("debug", filePath, file.code);
+            console.log('debug', filePath, file.code);
             // TODO: 判断路径有效
             fs.outputFileSync(filePath, file.code);
           } else {
-            console.warn("缺少根目录");
+            console.warn('缺少根目录');
           }
         }
       }

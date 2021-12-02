@@ -1,50 +1,65 @@
 #!/usr/bin/env node
-import * as path from "path";
-import fs from 'fs-extra'
+import * as path from 'path';
+import fs from 'fs-extra';
 import swc from '@swc/core';
-import CodeGenerator from "./code_generator.js";
+import yargs from 'yargs-parser';
+
+const args = yargs(process.argv.slice(2));
+
+import CodeGenerator from './code_generator.js';
 
 async function readConfig() {
   const workPath = process.cwd();
-  const configTsPath =path.resolve(workPath, "./codegemrc.ts")
+  const configTsPath = path.resolve(workPath, './codegemrc.ts');
   const output = swc.transformFileSync(configTsPath, {
-    "jsc": {
-      "parser": {
-        "syntax": "typescript",
-        "tsx": true,
+    jsc: {
+      parser: {
+        syntax: 'typescript',
+        tsx: true,
       },
-      "target": "es2021",
-      "keepClassNames": true,
-      "loose": true
+      target: 'es2021',
+      keepClassNames: true,
+      loose: true,
     },
-    "module": {
-      "type": "es6",
-      "strict": false,
-      "strictMode": true,
-      "lazy": false,
-      "noInterop": false
+    module: {
+      type: 'es6',
+      strict: false,
+      strictMode: true,
+      lazy: false,
+      noInterop: false,
     },
-    "sourceMaps": false
-  })
+    sourceMaps: false,
+  });
   try {
-    const configJsPath = path.resolve(workPath, "./node_modules/codegem_cache/codegemrc.mjs");
+    const configJsPath = path.resolve(
+      workPath,
+      './node_modules/codegem_cache/codegemrc.mjs',
+    );
     fs.outputFileSync(configJsPath, output.code);
     const { default: config } = await import(configJsPath);
-    fs.remove(path.dirname(configJsPath))
+    fs.remove(path.dirname(configJsPath));
     return config;
   } catch (error) {
-    console.error(error)
-    process.exit()
+    console.error(error);
+    process.exit();
   }
 }
 
 async function run() {
   const options = await readConfig();
-  // console.log("debug", options);
 
-  const codeGenerator = new CodeGenerator(options);
+  const debug = 'debug' in args ? true : false;
+
+  const ctx = { debug };
+
+  const codeGenerator = new CodeGenerator(options, ctx);
 
   codeGenerator.init();
 }
 
-run();
+if ('help' in args || 'h' in args) {
+  console.log('\n  Tip:\n');
+  console.log('代码生成器框架');
+} else {
+  run();
+}
