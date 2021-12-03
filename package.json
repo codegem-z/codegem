@@ -13,6 +13,7 @@
   ],
   "type": "module",
   "scripts": {
+    "dev": "tsm src/run.ts",
     "build": "rimraf build && tsc",
     "jest": "yarn build && jest --coverage",
     "release": "renew-it"
@@ -40,6 +41,7 @@
     "@swc/core": "^1.2.113",
     "codegem-tools": "0.1.1-alpha.0",
     "fs-extra": "^10.0.0",
+    "tapable": "^2.2.1",
     "yargs-parser": "^21.0.0"
   }
 }

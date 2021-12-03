@@ -1,7 +1,12 @@
 import fs from 'fs-extra';
 import * as path from 'path';
-import { Factory, Option, FileType, Use, Ctx } from './type.js';
+import { AsyncSeriesWaterfallHook } from 'tapable';
 import { Log } from 'codegem-tools';
+import { Factory, Option, FileType, Use, Ctx, Plugin } from './type.js';
+
+// machine 运行完成，生成代码以后的钩子
+const generatedHook = new AsyncSeriesWaterfallHook(['name']);
+
 interface EnhanceFactory extends Factory {
   id: symbol;
 }
@@ -25,9 +30,22 @@ export default class CodeGenerator {
       this.factory.push({ ...factory, ...{ id: factoryId } });
       this.createStorage(factoryId, []);
     });
+
+    this.option.plugin?.map((plugin) => {
+      this.registerPlugin(plugin);
+    });
+
     this.factory.forEach((factory) => {
       this.loading(factory.id, factory.use);
     });
+  }
+
+  // 注册插件
+  registerPlugin(plugin: Plugin) {
+    const { name } = plugin;
+    if (plugin.generatedHook) {
+      generatedHook.tapPromise(name, plugin.generatedHook);
+    }
   }
 
   // 开辟存储区域
@@ -41,6 +59,7 @@ export default class CodeGenerator {
     return factory;
   }
 
+  // 加载器运行
   async loading(factoryId: symbol, loads: Use[]) {
     try {
       const source = await Promise.all(
@@ -60,7 +79,10 @@ export default class CodeGenerator {
     const source = this.storage[factoryId];
     this.log.debug('原始数据', source);
     const files = machine(source, this.ctx);
-    this.writeFile(files, factory.output || this.option.output);
+    // TODO: 要触发对应的钩子
+    generatedHook.promise(files).then((res: FileType[]) => {
+      this.writeFile(res, factory.output || this.option.output);
+    });
   }
 
   writeFile(files: FileType[], rootPath?: string) {
