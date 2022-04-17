@@ -98,7 +98,7 @@ export default class CodeGenerator {
             // TODO: 判断路径有效
             fs.outputFileSync(filePath, file.code);
           } else {
-            console.warn('缺少根目录');
+            this.log.warn('缺少根目录');
           }
         }
       }
