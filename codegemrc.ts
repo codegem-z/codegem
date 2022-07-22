@@ -10,7 +10,6 @@ function pluginTest() {
   return {
     name: 'test',
     generatedHook: async (files) => {
-      console.log('[generatedHook]:test');
       files[0].code = 'generatedHook-test';
       return files;
     },

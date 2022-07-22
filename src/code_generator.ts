@@ -68,7 +68,8 @@ export default class CodeGenerator {
         }),
       );
       this.createStorage(factoryId, source);
-      // TODO: 开始运行
+      // NOTE: 加载数据
+      this.log.info('load data...');
       this.run(factoryId);
     } catch (error) {}
   }
@@ -77,9 +78,10 @@ export default class CodeGenerator {
     const factory = this.getFactory(factoryId);
     const { machine } = factory;
     const source = this.storage[factoryId];
-    this.log.debug('原始数据', source);
+    this.log.debug('[meta data]', source);
     const files = machine(source, this.ctx);
-    // TODO: 要触发对应的钩子
+    this.log.info('generate code...');
+    // NOTE: 要触发对应的钩子
     generatedHook.promise(files).then((res: FileType[]) => {
       this.writeFile(res, factory.output || this.option.output);
     });
@@ -89,19 +91,21 @@ export default class CodeGenerator {
     files.forEach((file) => {
       if (file.pathname && file.code) {
         if (path.isAbsolute(file.pathname)) {
-          // TODO: 判断路径有效
+          this.log.debug(file.pathname, file.code);
+          // NOTE: 判断路径有效
           fs.outputFileSync(file.pathname, file.code);
         } else {
           if (rootPath) {
             const filePath = path.resolve(rootPath, file.pathname);
             this.log.debug(filePath, file.code);
-            // TODO: 判断路径有效
+            // NOTE: 判断路径有效
             fs.outputFileSync(filePath, file.code);
           } else {
-            this.log.warn('缺少根目录');
+            this.log.warn('miss root path');
           }
         }
       }
     });
+    this.log.success('success');
   }
 }
