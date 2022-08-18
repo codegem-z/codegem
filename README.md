@@ -1,18 +1,51 @@
-# pure typescript package
+# Codegem
 
-只基于 typescript 的 package 模版
+<p align="center">
+<img width="100" src="https://assets-phi.vercel.app/-/codegem/codegem-logo.png"/>
+</P>
 
-## 配置 github secrets
-在 npm.js 里生成有 publish 权限的 token, 复制到 github 里的 secrets 里。注意，命名和 .github/workflows/publish.yml 里的使用保持一致
+<p align="center">
+ <img src="https://img.shields.io/badge/coverage-80%25-brightgreen">
+ <img src="https://img.shields.io/badge/min%20size-1%20kb-blue">
+ <img src="https://img.shields.io/npm/dt/codegem.svg?colorB=ff69b4">
+ </p>
 
-## 指南
+## Codegem 是什么？
 
-// 初次发布版本
-`npm run release --first-release`
+现代前端开发中已有的代码生成器都是独立开发和使用的，因此代码生成器中的「读取元数据」和「生成代码文件」两部分程序逻辑没有抽象出来，当开发新的代码生成器时就无法复用，从而无法专注于元数据处理和代码生成逻辑。Codegem 就是解决这类问题的工具，帮助开发者快速开发新的代码生成器。
 
-// 添加版本信息和指定发布版本等级
-`npm run release -m "Commit message" -r minor`
-`// major: 1.0.0 -> 2.0.0, minor: 1.0.0 -> 1.1.0, patch : 1.0.0 -> 1.0.1`
+## 安装
 
-// 确认发布，npm publish 发布到 npm
-`git push --follow-tags origin master && npm publish`
+```bash
+pnpm add codegem codegem-load-file codegem-machine-icon
+```
+
+## 配置文件
+
+在项目根目录下新建 `codegemrc.ts` 文件，具体配置代码如下：
+
+```ts
+import { defineConfig } from 'codegem';
+import loadFile from 'codegem-load-file';
+import createIcon from 'codegem-machine-icon';
+
+export default defineConfig({
+  output: 'example/generated', // 根目录;所有生成文件统一生成在这个目录下
+  factory: [
+    {
+      use: [loadFile('./example/icon/source')],
+      machine: createIcon('./example/generated/icon'),
+    },
+  ],
+});
+```
+
+## 运行
+
+```bash
+npx codegem
+```
+
+## 详情
+
+更详细的介绍请查看博客文章 [《略窥门径：Codegem 的简介》](https://one-word-phi.vercel.app/post/introduce_of_codegem)
