@@ -46,6 +46,29 @@ export default defineConfig({
 npx codegem
 ```
 
+## 单独运行 factory
+
+```bash
+npx codegem --name=example
+```
+
+配置中声明 factory name
+
+```ts
+export default defineConfig({
+  output: 'example/generated', // 根目录;所有生成文件统一生成在这个目录下
+  factory: [
+    {
+      name:'example'
+      use: [loadFile('./example/icon/source')],
+      machine: createIcon('./example/generated/icon'),
+    },
+  ],
+});
+```
+
+命令中不添加 name 参数，默认运行全部 factory
+
 ## 详情
 
 更详细的介绍请查看博客文章 [《略窥门径：Codegem 的简介》](https://one-word-phi.vercel.app/post/introduce_of_codegem)
