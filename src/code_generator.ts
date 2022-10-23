@@ -29,20 +29,21 @@ export default class CodeGenerator {
     if (this.ctx.name) {
       factories = this.option.factory.filter((it) => it.name === this.ctx.name);
     }
-    if (factories.length === 0) return null;
-    factories.forEach((factory: any, index) => {
-      const factoryId = Symbol(index);
-      this.factory.push({ ...factory, ...{ id: factoryId } });
-      this.createStorage(factoryId, []);
-    });
+    if (factories.length > 0) {
+      factories.forEach((factory: any, index) => {
+        const factoryId = Symbol(index);
+        this.factory.push({ ...factory, ...{ id: factoryId } });
+        this.createStorage(factoryId, []);
+      });
 
-    this.option.plugin?.map((plugin) => {
-      this.registerPlugin(plugin);
-    });
+      this.option.plugin?.map((plugin) => {
+        this.registerPlugin(plugin);
+      });
 
-    this.factory.forEach((factory) => {
-      this.loading(factory.id, factory.use);
-    });
+      this.factory.forEach((factory) => {
+        this.loading(factory.id, factory.use);
+      });
+    }
   }
 
   // 注册插件
