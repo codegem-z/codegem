@@ -50,13 +50,16 @@ async function run() {
 
   const debug = 'debug' in args ? true : false;
 
-  const ctx = { debug };
+  const name = 'name' in args ? args.name : null;
+
+  const ctx = { debug, name };
 
   const codeGenerator = new CodeGenerator(options, ctx);
 
   codeGenerator.init();
 }
 
+// --help or --h
 if ('help' in args || 'h' in args) {
   console.log('\n  Tip:\n');
   console.log('代码生成器框架');

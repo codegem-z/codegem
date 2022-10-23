@@ -12,6 +12,7 @@ export type Use = (ctx: Ctx) => Promise<any>;
 export interface Factory {
   use: Use[];
   machine: Machine;
+  name?: string; // as a sign of independent operation
   output?: string;
 }
 
@@ -23,4 +24,5 @@ export interface Option {
 
 export interface Ctx {
   debug: boolean;
+  name?: string;
 }

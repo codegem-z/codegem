@@ -25,7 +25,12 @@ export default class CodeGenerator {
 
   init() {
     this.log.info('init');
-    this.option.factory.forEach((factory: any, index) => {
+    let factories: Factory[] = this.option.factory;
+    if (this.ctx.name) {
+      factories = this.option.factory.filter((it) => it.name === this.ctx.name);
+    }
+    if (factories.length === 0) return null;
+    factories.forEach((factory: any, index) => {
       const factoryId = Symbol(index);
       this.factory.push({ ...factory, ...{ id: factoryId } });
       this.createStorage(factoryId, []);
