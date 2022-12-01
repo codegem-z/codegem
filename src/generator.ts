@@ -11,7 +11,7 @@ interface EnhanceFactory extends Factory {
   id: symbol;
 }
 
-export default class CodeGenerator {
+export default class Generator {
   option: Option;
   ctx: Ctx;
   log: Log;

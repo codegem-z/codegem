@@ -6,7 +6,7 @@ import yargs from 'yargs-parser';
 
 const args = yargs(process.argv.slice(2));
 
-import CodeGenerator from './code_generator.js';
+import Generator from './generator.js';
 
 async function readConfig() {
   const workPath = process.cwd();
@@ -54,9 +54,9 @@ async function run() {
 
   const ctx = { debug, name };
 
-  const codeGenerator = new CodeGenerator(options, ctx);
+  const generator = new Generator(options, ctx);
 
-  codeGenerator.init();
+  generator.init();
 }
 
 // --help or --h
