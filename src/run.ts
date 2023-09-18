@@ -23,10 +23,6 @@ async function readConfig() {
     },
     module: {
       type: 'es6',
-      strict: false,
-      strictMode: true,
-      lazy: false,
-      noInterop: false,
     },
     sourceMaps: false,
   });
