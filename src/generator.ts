@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import * as path from 'path';
 import { AsyncSeriesWaterfallHook } from 'tapable';
 import { Log } from 'codegem-tools';
-import { Factory, Option, FileType, Use, Ctx, Plugin } from './type.js';
+import { Factory, Option, FileType,  Ctx, Plugin } from './type.js';
 
 // machine 运行完成，生成代码以后的钩子
 const generatedHook = new AsyncSeriesWaterfallHook(['name']);
@@ -24,7 +24,7 @@ export default class Generator {
   }
 
   init() {
-    this.log.info('init');
+    this.log.info('init...');
     let factories: Factory[] = this.option.factory;
     if (this.ctx.name) {
       factories = this.option.factory.filter((it) => it.name === this.ctx.name);
@@ -41,7 +41,7 @@ export default class Generator {
       });
 
       this.factory.forEach((factory) => {
-        this.loading(factory.id, factory.use);
+        this.loading(factory);
       });
     }
   }
@@ -66,7 +66,8 @@ export default class Generator {
   }
 
   // 加载器运行
-  async loading(factoryId: symbol, loads: Use[]) {
+  async loading(enhanceFactory:EnhanceFactory) {
+    const {id:factoryId, use:loads, name} = enhanceFactory
     try {
       const source = await Promise.all(
         loads.map(async (it) => {
@@ -75,18 +76,18 @@ export default class Generator {
       );
       this.createStorage(factoryId, source);
       // NOTE: 加载数据
-      this.log.info('load data...');
+      this.log.info(`[${name}] load data`);
       this.run(factoryId);
     } catch (error) {}
   }
 
   run(factoryId: symbol) {
     const factory = this.getFactory(factoryId);
-    const { machine } = factory;
+    const { machine, name } = factory;
     const source = this.storage[factoryId];
     this.log.debug('[meta data]', source);
     const files = machine(source, this.ctx);
-    this.log.info('generate code...');
+    this.log.info(`[${name}] generate code`);
     // NOTE: 要触发对应的钩子
     generatedHook.promise(files).then((res: FileType[]) => {
       this.writeFile(res, factory.output || this.option.output);
